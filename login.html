@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log In | The Mesquit on Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--slate:#2B3036;--bluegrey:#7F8894;--mist:#EEF0F2;--line:#D8DCE0;--wood:#8B5E3C;--text:#24292E;--muted:#5C646D}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#EEF0F2}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--mist);min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+h1,h2{font-family:"Libre Baskerville",Georgia,serif;color:var(--slate);line-height:1.25}
+.side{background:linear-gradient(rgba(43,48,54,.35),rgba(43,48,54,.75)),url(img/exterior-corner.jpg) center/cover;color:#fff;padding:48px;display:flex;flex-direction:column;justify-content:space-between}
+.side a{color:#fff;text-decoration:none;font-family:"Libre Baskerville",serif;font-size:20px;font-weight:700}
+.side h2{color:#fff;font-size:30px;margin-bottom:10px}
+.side p{color:#E3E7EB;max-width:420px}
+.main{display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:36px;width:100%;max-width:420px}
+.draft{background:#FFF4CC;color:#5a4a00;font-size:13px;padding:8px 12px;border-radius:8px;margin-bottom:20px}
+.box h1{font-size:26px;margin-bottom:6px}
+.box>p{color:var(--muted);margin-bottom:22px;font-size:15px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--mist);border-radius:999px;padding:4px;margin-bottom:22px}
+.tabs button{border:0;background:none;padding:9px;border-radius:999px;font:600 14px Inter,sans-serif;color:var(--muted);cursor:pointer}
+.tabs button.on{background:#fff;color:var(--slate);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+form{display:grid;gap:14px}
+label{font-size:14px;font-weight:500;color:var(--slate);display:grid;gap:6px}
+input{font:15px Inter,sans-serif;padding:12px 14px;border:1px solid var(--line);border-radius:10px;width:100%}
+.btn{border:0;cursor:pointer;font:600 15px Inter,sans-serif;padding:13px;border-radius:999px;background:var(--slate);color:#fff;text-align:center;text-decoration:none;display:block}
+.btn:hover{background:#4E5762}
+.small{font-size:13px;color:var(--muted);text-align:center}
+.small a{color:var(--wood)}
+.hidden{display:none}
+@media (max-width:820px){body{grid-template-columns:1fr}.side{min-height:220px;padding:28px 20px}.side h2{font-size:24px}}
+</style>
+</head>
+<body>
+<aside class="side">
+  <a href="index.html">← The Mesquit on Main</a>
+  <div>
+    <h2>Your space, managed online</h2>
+    <p>Tenants pay rent and send requests. Waitlist members check their status and apply when a space opens.</p>
+  </div>
+</aside>
+<main class="main">
+  <div class="box">
+    <div class="draft">Draft preview: any email works, nothing is checked or sent.</div>
+    <h1 id="ttl">Welcome back</h1>
+    <p id="sub">Log in to your account.</p>
+    <div class="tabs"><button class="on" data-m="in">Log in</button><button data-m="up">Create account</button></div>
+    <form id="f" onsubmit="go(event)">
+      <label class="hidden up">Full name<input name="name"></label>
+      <label>Email<input type="email" required name="email"></label>
+      <label>Password<input type="password" required name="pw"></label>
+      <button class="btn" type="submit" id="sb">Log In</button>
+      <p class="small in"><a href="#">Forgot password?</a></p>
+      <p class="small hidden up">New accounts join the waitlist. Current tenants get an invite email from Anya.</p>
+    </form>
+    <p class="small" style="margin-top:18px">Demo: <a href="portal.html?as=tenant">tenant view</a> · <a href="portal.html?as=waitlist">waitlist view</a></p>
+  </div>
+</main>
+<script>
+let mode="in";
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+  mode=b.dataset.m;
+  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".up").forEach(e=>e.classList.toggle("hidden",mode!=="up"));
+  document.querySelectorAll(".in").forEach(e=>e.classList.toggle("hidden",mode!=="in"));
+  document.getElementById("ttl").textContent=mode==="up"?"Join the waitlist":"Welcome back";
+  document.getElementById("sub").textContent=mode==="up"?"Create an account to save your spot and apply online.":"Log in to your account.";
+  document.getElementById("sb").textContent=mode==="up"?"Create Account":"Log In";
+});
+function go(e){e.preventDefault();location.href="portal.html?as="+(mode==="up"?"waitlist":"tenant")}
+</script>
+</body>
+</html>

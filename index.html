@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Mesquit on Main | Historic Offices &amp; Retail Spaces</title>
+<meta name="description" content="Affordable office and retail spaces in a historic 1912 building. All 24 spaces are leased: join the waitlist to be first in line.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Building colours: blue-grey painted brick, white trim, black doors, warm wood floors */
+:root{
+  --slate:#2B3036; --bluegrey:#7F8894; --mist:#EEF0F2; --line:#D8DCE0;
+  --sage:#2B3036; --sage-dark:#4E5762; --wood:#8B5E3C; --white:#fff; --text:#24292E; --muted:#5C646D;
+  --radius:14px; --wrap:1140px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6}
+h1,h2,h3{font-family:"Libre Baskerville",Georgia,serif;color:var(--slate);line-height:1.25}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.draft-bar{background:#FFF4CC;color:#5a4a00;text-align:center;font-size:13px;padding:6px 12px}
+.ph{background:repeating-linear-gradient(135deg,#dfe4e8 0 14px,#e8ecef 14px 28px);display:flex;align-items:center;justify-content:center;color:var(--bluegrey);font-size:14px;font-weight:600;text-align:center;padding:12px}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{font-family:"Libre Baskerville",serif;font-weight:700;color:var(--slate);text-decoration:none;font-size:19px}
+.logo small{display:block;font-family:Inter,sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bluegrey)}
+.links{display:flex;gap:26px;align-items:center}
+.links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--slate)}
+.links a.btn{color:#fff}
+.btn{display:inline-block;border:0;cursor:pointer;font:600 15px Inter,sans-serif;text-decoration:none;padding:12px 22px;border-radius:999px;background:var(--sage);color:#fff;transition:background .2s}
+.btn:hover{background:var(--sage-dark)}
+.btn.ghost{background:transparent;color:var(--slate);box-shadow:inset 0 0 0 2px var(--slate)}
+.btn.ghost:hover{background:var(--slate);color:#fff}
+.btn.small{padding:8px 16px;font-size:14px}
+.menu-btn{display:none;background:none;border:0;font-size:26px;color:var(--slate);cursor:pointer}
+
+/* hero */
+.hero{background:var(--mist)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:64px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--wood);margin-bottom:12px}
+.hero h1{font-size:44px;margin-bottom:18px}
+.hero p{font-size:18px;color:var(--muted);margin-bottom:28px;max-width:520px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .ph{aspect-ratio:4/3;border-radius:var(--radius)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;max-width:520px}
+.stat b{display:block;font-family:"Libre Baskerville",serif;font-size:26px;color:var(--slate)}
+.stat span{font-size:13px;color:var(--muted)}
+
+section{padding:80px 0}
+.head{max-width:680px;margin-bottom:40px}
+.head h2{font-size:34px;margin-bottom:12px}
+.head p{color:var(--muted);font-size:17px}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:#fff}
+.card h3{font-size:19px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15px}
+.icon{width:44px;height:44px;border-radius:12px;background:var(--mist);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+
+/* units */
+#units{background:var(--mist)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 18px;font:500 14px Inter,sans-serif;color:var(--slate);cursor:pointer}
+.filters button.on{background:var(--slate);color:#fff;border-color:var(--slate)}
+.units{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.unit{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column}
+.unit .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.unit h3{font-size:18px}
+.meta{font-size:13px;color:var(--muted)}
+.status{align-self:flex-start;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:#E6ECEF;color:var(--bluegrey)}
+.status.open{background:#F3E9DF;color:var(--wood)}
+.photo{width:100%;height:100%;object-fit:cover;display:block}
+.hero-img{aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 40px rgba(43,48,54,.18)}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px}
+.gallery figure{position:relative;border-radius:12px;overflow:hidden;margin:0}
+.gallery figure.big{grid-column:span 2;grid-row:span 2}
+.gallery figcaption{position:absolute;left:10px;bottom:10px;background:rgba(43,48,54,.78);color:#fff;font-size:12px;font-weight:500;padding:4px 10px;border-radius:999px}
+.gtabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.unit .btn{margin-top:auto;align-self:flex-start}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s}
+.step{position:relative;padding-top:56px}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:0;left:0;width:40px;height:40px;border-radius:50%;background:var(--slate);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600}
+.step h3{font-size:18px;margin-bottom:6px}
+.step p{color:var(--muted);font-size:15px}
+
+/* tenants */
+#tenants{background:var(--slate);color:#fff}
+#tenants h2,#tenants h3{color:#fff}
+#tenants .head p{color:#C9D2DA}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.tcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:10px}
+.tcard p{color:#C9D2DA;font-size:15px;flex:1}
+.tcard .btn{align-self:flex-start}
+#tenants .btn{background:#fff;color:var(--slate)}
+#tenants .btn:hover{background:var(--mist)}
+
+/* waitlist */
+.wl{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+form{display:grid;gap:14px}
+label{font-size:14px;font-weight:500;color:var(--slate);display:grid;gap:6px}
+input,select,textarea{font:15px Inter,sans-serif;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text);width:100%}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.note{font-size:13px;color:var(--muted)}
+.ok{display:none;background:#F3E9DF;color:var(--wood);padding:14px;border-radius:10px;font-weight:500}
+
+/* availability pill */
+.avail{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--slate);margin-bottom:18px}
+.avail i{width:8px;height:8px;border-radius:50%;background:var(--wood);display:inline-block}
+.tbc{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;background:#FFF4CC;color:#5a4a00;border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:middle;font-family:Inter,sans-serif}
+
+/* story */
+.story{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+.story-img{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;position:relative}
+.story-img img{filter:grayscale(1) contrast(1.05)}
+.story-img span{position:absolute;left:14px;bottom:14px;background:rgba(43,48,54,.82);color:#fff;font-size:12px;padding:4px 10px;border-radius:999px}
+.timeline{list-style:none;border-left:2px solid var(--line);margin-top:26px}
+.timeline li{position:relative;padding:0 0 22px 26px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--wood)}
+.timeline b{font-family:"Libre Baskerville",serif;color:var(--slate);font-size:18px;display:block}
+.timeline p{color:var(--muted);font-size:15px}
+
+/* included */
+.incl{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.incl div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;font-size:15px;color:var(--slate);font-weight:500}
+.incl div small{display:block;color:var(--muted);font-weight:400;font-size:13px;margin-top:4px}
+
+/* neighbours */
+.ngrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ncard{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+.ncard .pic{aspect-ratio:16/10}
+.ncard .body{padding:16px 18px}
+.ncard h3{font-size:17px}
+.ncard p{font-size:14px;color:var(--muted)}
+
+/* location */
+.loc{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.loc .ph{aspect-ratio:4/3;border-radius:var(--radius)}
+.loc ul{list-style:none;display:grid;gap:12px;margin-top:8px}
+.loc li{padding-left:28px;position:relative;color:var(--muted)}
+.loc li::before{content:"✓";position:absolute;left:0;color:var(--wood);font-weight:700}
+
+/* faq */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{cursor:pointer;font-weight:600;color:var(--slate);font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;line-height:1;color:var(--bluegrey)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{color:var(--muted);margin-top:10px;font-size:15px}
+
+/* phone waitlist bar */
+.mbar{display:none}
+
+footer{background:#1F272F;color:#AEB9C3;padding:44px 0;font-size:14px}
+footer .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+footer h4{color:#fff;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+footer a{color:#AEB9C3;text-decoration:none;display:block;margin-bottom:6px}
+footer a:hover{color:#fff}
+footer .copy{border-top:1px solid rgba(255,255,255,.1);margin-top:28px;padding-top:18px;font-size:13px}
+footer b{color:#fff;font-family:"Libre Baskerville",serif}
+
+/* menu collapses before it can wrap */
+.links a{white-space:nowrap}
+@media (max-width:1080px){
+  .links{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:20px;border-bottom:1px solid var(--line);gap:18px}
+  .links.open{display:flex}
+  .menu-btn{display:block}
+}
+/* tablet */
+@media (max-width:1000px){
+  .units{grid-template-columns:repeat(3,1fr)}
+  .gallery{grid-template-columns:repeat(3,1fr)}
+  .gallery figure.big{grid-column:span 1;grid-row:span 1}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:38px}
+  .incl{grid-template-columns:repeat(2,1fr)}
+  .tgrid{grid-template-columns:repeat(2,1fr)}
+  footer .fgrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .hero .wrap,.wl{grid-template-columns:1fr}
+  .about-grid,.ngrid{grid-template-columns:1fr}
+  .story,.loc{grid-template-columns:1fr;gap:32px}
+  .story-img{aspect-ratio:16/10}
+  .units{grid-template-columns:repeat(2,1fr)}
+}
+/* phone */
+@media (max-width:520px){
+  .wrap{padding:0 16px}
+  section{padding:56px 0}
+  .hero .wrap{padding-top:40px;padding-bottom:44px;gap:28px}
+  .hero h1{font-size:31px}
+  .head h2{font-size:27px}
+  .units{grid-template-columns:1fr 1fr;gap:12px}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:150px;gap:10px}
+  .gallery figure.big{grid-column:span 2;grid-row:span 2}
+  .unit .body{padding:12px}
+  .unit h3{font-size:16px}
+  .unit .meta{font-size:12px}
+  .unit .btn.small{padding:6px 12px;font-size:13px}
+  .stats{gap:10px}
+  .steps,.row2{grid-template-columns:1fr}
+  .stats b{font-size:22px}
+  .tgrid,.incl{grid-template-columns:1fr}
+  footer .fgrid{grid-template-columns:1fr}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:10px 16px;gap:10px;box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+  .mbar .btn{flex:1;text-align:center;padding:12px}
+  body{padding-bottom:70px}
+}
+</style>
+</head>
+<body>
+
+<div class="draft-bar">DRAFT for Anya &amp; Darin: unit sizes, rents and city still to confirm.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">The Mesquit on Main<small>Est. 1912 · Offices &amp; Retail</small></a>
+    <nav class="links" id="links">
+      <a href="#story">Our Story</a>
+      <a href="#units">Spaces</a>
+      <a href="#how">How to Lease</a>
+      <a href="#faq">FAQ</a>
+      <a href="#tenants">Tenants</a>
+      <a href="login.html">Log In</a>
+      <a class="btn small" href="#waitlist">Join the Waitlist</a>
+    </nav>
+    <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('links').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <div class="wrap">
+      <div>
+        <p class="avail"><i></i>Fully leased · Waitlist open</p>
+        <p class="eyebrow">Historic offices · since 1912</p>
+        <h1>Affordable offices and shop spaces in one of the town's oldest buildings</h1>
+        <p>Small private offices and street-level retail, close to wine country and the coast. Every space is leased right now. Join the waitlist to be first in line when one opens.</p>
+        <div class="ctas">
+          <a class="btn" href="#waitlist">Join the Waitlist</a>
+          <a class="btn ghost" href="#how">Book a Video Tour</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>24</b><span>spaces</span></div>
+          <div class="stat"><b>100%</b><span>leased</span></div>
+          <div class="stat"><b>1912</b><span>year built</span></div>
+        </div>
+      </div>
+      <div class="hero-img"><img class="photo" src="img/exterior-corner.jpg" alt="The Mesquit on Main, a blue-grey brick building at 201 E. Main Street"></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="head">
+        <h2>A historic building, cared for</h2>
+        <p>We kept the character of the original 1912 building and keep it in great shape, so tenants tend to stay for years.</p>
+      </div>
+      <div class="about-grid">
+        <div class="card"><div class="icon">🏛️</div><h3>Historic character</h3><p>One of the oldest buildings in town, with its original architecture kept intact.</p></div>
+        <div class="card"><div class="icon">💲</div><h3>Fair, simple rent</h3><p>Some of the most affordable office space in town. One easy online payment each month.</p></div>
+        <div class="card"><div class="icon">🧰</div><h3>Well maintained</h3><p>Regular carpet cleaning, solar panel washing and paint touch-ups, on a set schedule.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" style="padding-top:0">
+    <div class="wrap story">
+      <div class="story-img"><img class="photo" loading="lazy" src="img/exterior-side.jpg" alt="Side of the building on Main Street"><span>201 E. Main Street</span></div>
+      <div>
+        <p class="eyebrow">Our story</p>
+        <h2 style="font-size:34px">More than an office. An address with a story.</h2>
+        <p style="color:var(--muted);margin-top:12px">For over a century this corner of Main Street has been home to local business. When you lease here, your business becomes part of that story.</p>
+        <ul class="timeline">
+          <li><b>1912</b><p>The building goes up on Main Street, one of the first of its kind in town.</p></li>
+          <li><b>Early years <span class="tbc">ask Anya</span></b><p>What the building was first used for, and who built it.</p></li>
+          <li><b>Restoration <span class="tbc">ask Anya</span></b><p>When the Gossages took over and what was restored: brick, floors, windows.</p></li>
+          <li><b>Today</b><p>24 offices and shops, home to small local businesses, with solar power and a regular care schedule.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="inside" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <h2>Inside the building</h2>
+        <p>Bright offices with tall windows, hardwood floors and open-beam ceilings. A few photos of spaces as our tenants use them today.</p>
+      </div>
+      <div class="gallery">
+        <figure class="big"><img class="photo" loading="lazy" src="img/office-empty-1.jpg" alt="Empty upstairs office with tall window"><figcaption>Office, ready for a new tenant</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/exterior-sidewalk.jpg" alt="Main Street sidewalk entrance"><figcaption>Main Street</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/hallway.jpg" alt="Upstairs hallway"><figcaption>Hallway</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/office-2.jpg" alt="Furnished office"><figcaption>Office</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/studio-1.jpg" alt="Street-level fitness studio"><figcaption>Street-level studio</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/office-empty-4.jpg" alt="Empty office with brick wall"><figcaption>Office with brick wall</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/studio-2.jpg" alt="Treatment room"><figcaption>Treatment room</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/office-1.jpg" alt="Office with wood floors"><figcaption>Office</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/exterior-side.jpg" alt="Side of the building"><figcaption>Side entrance</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/office-4.jpg" alt="Large open office"><figcaption>Large office</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/studio-3.jpg" alt="Beauty studio with barn door"><figcaption>Studio</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/office-empty-5.jpg" alt="Empty office with brick wall and window"><figcaption>Office</figcaption></figure>
+        <figure><img class="photo" loading="lazy" src="img/kitchenette.jpg" alt="Kitchenette inside a suite"><figcaption>Kitchenette</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="included" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <h2>What every space includes</h2>
+        <p>Simple, all-in leasing. Items marked TBC are waiting on Anya and Darin.</p>
+      </div>
+      <div class="incl">
+        <div>Tall windows &amp; natural light<small>Original sash windows in most offices</small></div>
+        <div>Hardwood floors &amp; brick<small>Character you can't get in a new build</small></div>
+        <div>Solar-powered building<small>Panels cleaned on a set schedule</small></div>
+        <div>Regular upkeep<small>Carpets, paint and common areas on a calendar</small></div>
+        <div>Online rent &amp; autopay<small>Card or bank transfer, receipts by email</small></div>
+        <div>Repair requests online<small>Send a photo, track the fix</small></div>
+        <div>Utilities <span class="tbc">TBC</span><small>Which utilities are in the rent</small></div>
+        <div>Parking &amp; access hours <span class="tbc">TBC</span><small>Street, lot, and building hours</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="units">
+    <div class="wrap">
+      <div class="head">
+        <h2>The spaces</h2>
+        <p>18 private offices upstairs and 6 retail spaces at street level. Some spaces connect, so you can lease one or two side by side. Every space is leased today; tap a space to join its waitlist.</p>
+      </div>
+      <div class="filters" role="tablist">
+        <button class="on" data-f="all">All 24</button>
+        <button data-f="office">Offices (upstairs)</button>
+        <button data-f="retail">Retail (street level)</button>
+      </div>
+      <div class="units" id="unitGrid"></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="head">
+        <h2>How leasing works</h2>
+        <p>Everything happens online, from anywhere. No printing, no office visits.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Join the waitlist</h3><p>Tell us which space or type of space you'd like. We contact you as soon as one opens.</p></div>
+        <div class="step"><h3>Apply online</h3><p>Fill out the rental application on your phone or computer in a few minutes.</p></div>
+        <div class="step"><h3>Quick video call</h3><p>A short Zoom or FaceTime chat, or meet Darin in person if he's on site.</p></div>
+        <div class="step"><h3>Sign &amp; move in</h3><p>Sign your lease online, set up rent payments, and get your keys.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="neighbors" style="background:var(--mist)">
+    <div class="wrap">
+      <div class="head">
+        <h2>Meet the neighbors</h2>
+        <p>Small local businesses share the building, from wellness studios to professional offices. <span class="tbc">names with tenants' OK</span></p>
+      </div>
+      <div class="ngrid">
+        <div class="ncard"><div class="pic"><img class="photo" loading="lazy" src="img/studio-1.jpg" alt="Fitness studio"></div><div class="body"><h3>[Tenant name]</h3><p>Fitness studio · Street level</p></div></div>
+        <div class="ncard"><div class="pic"><img class="photo" loading="lazy" src="img/studio-2.jpg" alt="Treatment room"></div><div class="body"><h3>[Tenant name]</h3><p>Wellness &amp; treatments · Upstairs</p></div></div>
+        <div class="ncard"><div class="pic"><img class="photo" loading="lazy" src="img/studio-3.jpg" alt="Beauty studio"></div><div class="body"><h3>[Tenant name]</h3><p>Beauty studio · Upstairs</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="location">
+    <div class="wrap loc">
+      <div class="ph">Map of 201 E. Main Street<br>(added once the city is confirmed)</div>
+      <div>
+        <div class="head" style="margin-bottom:16px">
+          <h2>Right on Main Street</h2>
+          <p>Walk-in traffic for shops, an easy address for clients. <span class="tbc">details TBC</span></p>
+        </div>
+        <ul>
+          <li>Corner of Main Street, visible from the sidewalk</li>
+          <li>Close to wine country and the coast</li>
+          <li>Nearby cafés, restaurants and shops</li>
+          <li>Parking: street and nearby lots</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>Questions, answered</h2></div>
+      <div class="faq">
+        <details><summary>How does the waitlist work?</summary><p>Join for a specific space or for any office or retail space. When one opens, we contact people on the list first by email and text, and you can apply online right away.</p></details>
+        <details><summary>How long is the wait?</summary><p>It depends on the space. Tenants tend to stay for years, so joining early is the best way to get in. <span class="tbc">typical wait TBC</span></p></details>
+        <details><summary>Can I see a space before I apply?</summary><p>Yes. Book a short video tour, or meet Darin at the building when he's on site.</p></details>
+        <details><summary>Can I lease two spaces together?</summary><p>Yes. Some offices sit side by side, and several tenants already lease two joined spaces. Mention it when you join the waitlist.</p></details>
+        <details><summary>How long is a lease, and what does rent include?</summary><p><span class="tbc">TBC with Anya</span> Lease length, deposit, and which utilities are included.</p></details>
+        <details><summary>How do I pay rent?</summary><p>Online through your tenant account, by card or bank transfer. You can turn on autopay and get a receipt every month.</p></details>
+        <details><summary>Who handles repairs?</summary><p>Log in and send a maintenance request with a photo. We'll confirm and schedule the fix, and you can follow it in your account.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="tenants">
+    <div class="wrap">
+      <div class="head">
+        <h2>For current tenants</h2>
+        <p>Log in to pay rent, ask for a repair, and find your lease, all in one place.</p>
+      </div>
+      <div class="tgrid">
+        <div class="tcard"><h3>Pay rent</h3><p>Pay by card or bank transfer. Set up autopay and get a receipt every month.</p><a class="btn small" href="login.html">Pay Rent</a></div>
+        <div class="tcard"><h3>Request maintenance</h3><p>Something needs fixing? Send a request with a photo and we'll schedule it.</p><a class="btn small" href="login.html">Send a Request</a></div>
+        <div class="tcard"><h3>My documents</h3><p>Your signed lease, receipts and building notices, saved online.</p><a class="btn small" href="login.html">Open Documents</a></div>
+        <div class="tcard"><h3>Building handbook</h3><p>Building hours, trash and recycling, parking, and who to call in an emergency.</p><a class="btn small" href="login.html">Read Handbook</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="waitlist">
+    <div class="wrap wl">
+      <div class="head" style="margin:0">
+        <h2>Join the waitlist</h2>
+        <p>All spaces are leased right now, and they don't stay open long. Add your name and we'll reach out first when the space you want becomes available.</p>
+        <div style="aspect-ratio:16/10;border-radius:var(--radius);overflow:hidden;margin-top:28px"><img class="photo" src="img/hallway.jpg" alt="Upstairs hallway" style="object-position:center 60%"></div>
+      </div>
+      <form id="wlForm" onsubmit="return joinWL(event)">
+        <div class="row2">
+          <label>First name<input required name="first"></label>
+          <label>Last name<input required name="last"></label>
+        </div>
+        <div class="row2">
+          <label>Email<input required type="email" name="email"></label>
+          <label>Phone<input type="tel" name="phone"></label>
+        </div>
+        <label>Business name<input name="business"></label>
+        <div class="row2">
+          <label>Space type
+            <select name="type" id="wlType"><option>Office (upstairs)</option><option>Retail (street level)</option><option>Either</option></select>
+          </label>
+          <label>Preferred space
+            <select name="unit" id="wlUnit"><option>Any</option></select>
+          </label>
+        </div>
+        <label>Anything we should know?<textarea rows="3" name="notes" placeholder="e.g. need two connected offices, move-in timing"></textarea></label>
+        <button class="btn" type="submit">Join the Waitlist</button>
+        <p class="note">Already on the waitlist? <a href="login.html" style="color:var(--wood)">Log in</a> to see your status. (Draft form: nothing is sent yet.)</p>
+        <div class="ok" id="wlOk">Thanks! You're on the waitlist. (Draft preview, nothing was sent.)</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><b>The Mesquit on Main</b><br>201 E. Main Street<br>[City], California<br><span class="tbc">phone &amp; email TBC</span></div>
+      <div><h4>Leasing</h4><a href="#units">Spaces</a><a href="#how">How to lease</a><a href="#waitlist">Join the waitlist</a><a href="#faq">FAQ</a></div>
+      <div><h4>Tenants</h4><a href="login.html">Log in</a><a href="login.html">Pay rent</a><a href="login.html">Request maintenance</a><a href="login.html">Building handbook</a></div>
+      <div><h4>The building</h4><a href="#story">Our story</a><a href="#inside">Photos</a><a href="#neighbors">Neighbors</a><a href="#location">Location</a></div>
+    </div>
+    <div class="copy">© <span id="yr"></span> The Mesquit on Main · Privacy · Terms</div>
+  </div>
+</footer>
+
+<div class="mbar"><a class="btn" href="#waitlist">Join the Waitlist</a><a class="btn ghost" href="login.html">Log In</a></div>
+
+<script>
+// 18 offices upstairs (A–R) + 6 retail downstairs (1–6). All leased per Anya, 2026-11-02.
+const units=[];
+"ABCDEFGHIJKLMNOPQR".split("").forEach(l=>units.push({id:"Office "+l,type:"office",floor:"Upstairs",status:"Leased"}));
+for(let i=1;i<=6;i++)units.push({id:"Retail "+i,type:"retail",floor:"Street level",status:"Leased"});
+
+const grid=document.getElementById("unitGrid"), sel=document.getElementById("wlUnit");
+function render(f){
+  grid.innerHTML=units.filter(u=>f==="all"||u.type===f).map(u=>`
+    <article class="unit">
+      <div class="body">
+        <span class="status${u.status==="Available"?" open":""}">${u.status}</span>
+        <h3>${u.id}</h3>
+        <div class="meta">${u.type==="office"?"Private office":"Retail space"} · ${u.floor}</div>
+        <div class="meta">Size TBC · Rent TBC</div>
+        <a class="btn small ghost" href="#waitlist" onclick="pick('${u.id}','${u.type}')">${u.status==="Available"?"Apply":"Join Waitlist"}</a>
+      </div>
+    </article>`).join("");
+}
+units.forEach(u=>sel.add(new Option(u.id)));
+document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on");render(b.dataset.f);
+});
+function pick(id,type){sel.value=id;document.getElementById("wlType").selectedIndex=type==="office"?0:1}
+function joinWL(e){e.preventDefault();document.getElementById("wlOk").style.display="block";e.target.reset();return false}
+document.getElementById("yr").textContent=new Date().getFullYear();
+render("all");
+document.querySelectorAll(".links a").forEach(a=>a.onclick=()=>document.getElementById("links").classList.remove("open"));
+</script>
+</body>
+</html>

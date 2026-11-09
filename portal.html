@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Account | The Mesquit on Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--slate:#2B3036;--bluegrey:#7F8894;--mist:#EEF0F2;--line:#D8DCE0;--wood:#8B5E3C;--text:#24292E;--muted:#5C646D;--ok:#3F7A4C;--okbg:#E4F0E6;--warn:#8B5E3C;--warnbg:#F3E9DF}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#EEF0F2}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--mist);line-height:1.55}
+h1,h2,h3{font-family:"Libre Baskerville",Georgia,serif;color:var(--slate);line-height:1.25}
+.draft{background:#FFF4CC;color:#5a4a00;text-align:center;font-size:13px;padding:6px 12px}
+.draft a{color:#5a4a00;font-weight:600}
+header{background:#fff;border-bottom:1px solid var(--line)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.top{display:flex;justify-content:space-between;align-items:center;height:64px;gap:12px}
+.logo{font-family:"Libre Baskerville",serif;font-weight:700;color:var(--slate);text-decoration:none;font-size:18px}
+.who{display:flex;align-items:center;gap:14px;font-size:14px;color:var(--muted)}
+.who a{color:var(--slate);font-weight:500}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--bluegrey);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px}
+main.wrap{padding-top:32px;padding-bottom:60px}
+.hello h1{font-size:28px;margin-bottom:4px}
+.hello p{color:var(--muted);margin-bottom:24px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+.card .lbl{font-size:13px;color:var(--muted);margin-bottom:4px}
+.card .big{font-family:"Libre Baskerville",serif;font-size:24px;color:var(--slate)}
+.card .note{font-size:13px;color:var(--muted);margin-top:4px}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tabs button{border:0;background:none;padding:12px 16px;font:600 14px Inter,sans-serif;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button.on{color:var(--slate);border-color:var(--slate)}
+.panel{display:none}
+.panel.on{display:block}
+.pane{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:16px}
+.pane h2{font-size:20px;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.btn{display:inline-block;border:0;cursor:pointer;font:600 14px Inter,sans-serif;padding:11px 20px;border-radius:999px;background:var(--slate);color:#fff;text-decoration:none}
+.btn:hover{background:#4E5762}
+.btn.ghost{background:transparent;color:var(--slate);box-shadow:inset 0 0 0 2px var(--slate)}
+.btn.ghost:hover{background:var(--slate);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px}
+.pill.ok{background:var(--okbg);color:var(--ok)}
+.pill.warn{background:var(--warnbg);color:var(--warn)}
+.pill.grey{background:var(--mist);color:var(--muted)}
+form{display:grid;gap:14px;max-width:560px}
+label{font-size:14px;font-weight:500;color:var(--slate);display:grid;gap:6px}
+input,select,textarea{font:15px Inter,sans-serif;padding:11px 13px;border:1px solid var(--line);border-radius:10px;width:100%;background:#fff}
+.toggle{display:flex;align-items:center;gap:10px;font-size:14px}
+.msg{display:none;background:var(--okbg);color:var(--ok);padding:12px 14px;border-radius:10px;font-weight:500;margin-top:12px}
+.doc{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.doc:last-child{border:0}
+.doc a{color:var(--wood);font-weight:600;font-size:14px}
+.place{display:flex;align-items:center;gap:20px}
+.place .num{width:84px;height:84px;border-radius:50%;background:var(--slate);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Libre Baskerville",serif;font-size:30px;flex:none}
+.steps{list-style:none;display:grid;gap:12px}
+.steps li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.steps .dot{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.dot.done{background:var(--ok);color:#fff}.dot.now{background:var(--wood);color:#fff}.dot.next{background:var(--mist);color:var(--muted)}
+.hide{display:none}
+@media (max-width:760px){
+  .cards{grid-template-columns:1fr}
+  .who span.name{display:none}
+  .hide-m{display:none}
+  .place{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="draft">Draft demo with sample data, laid out like the GHL Client Portal (Billing, Contracts, Shared Files, Appointments, Communities). Switch view: <a href="?as=tenant">Tenant</a> · <a href="?as=waitlist">Waitlist member</a></div>
+<header><div class="wrap top">
+  <a class="logo" href="index.html">The Mesquit on Main</a>
+  <div class="who"><span class="name" id="who"></span><div class="avatar" id="av"></div><a href="login.html">Log out</a></div>
+</div></header>
+
+<main class="wrap">
+
+<!-- ================= TENANT ================= -->
+<section id="tenant" class="hide">
+  <div class="hello"><h1>Hi, Sarah</h1><p>Office F · Upstairs · Lease through Dec 31, 2027</p></div>
+  <div class="cards">
+    <div class="card"><div class="lbl">Rent due Dec 1</div><div class="big">$500.00</div><div class="note">Autopay is off</div></div>
+    <div class="card"><div class="lbl">Open requests</div><div class="big">1</div><div class="note">Window blind repair: scheduled</div></div>
+    <div class="card"><div class="lbl">Next building service</div><div class="big">Dec 8</div><div class="note">Hallway carpet cleaning</div></div>
+  </div>
+  <div class="tabs" data-group="t">
+    <button class="on" data-p="t-pay">Billing</button><button data-p="t-req">Requests</button><button data-p="t-docs">Contracts &amp; files</button><button data-p="t-news">Building notices</button>
+  </div>
+
+  <div class="panel on" id="t-pay">
+    <div class="pane">
+      <div class="row"><div><h2 style="margin:0">Balance due: $500.00</h2><p style="color:var(--muted);font-size:14px">December rent, due Dec 1. Pay by card or bank transfer (ACH).</p></div>
+      <button class="btn" onclick="ok('payMsg')">Pay $500.00</button></div>
+      <div class="msg" id="payMsg">Demo only: payment would open the secure checkout and email a receipt.</div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+      <label class="toggle"><input type="checkbox" style="width:auto"> Turn on autopay (charged on the 1st of each month)</label>
+    </div>
+    <div class="pane">
+      <h2>Payment history</h2>
+      <table><tr><th>Date</th><th>For</th><th>Amount</th><th>Status</th><th class="hide-m">Receipt</th></tr>
+      <tr><td>Nov 1, 2026</td><td>November rent</td><td>$500.00</td><td><span class="pill ok">Paid</span></td><td class="hide-m"><a href="#" style="color:var(--wood)">PDF</a></td></tr>
+      <tr><td>Oct 1, 2026</td><td>October rent</td><td>$500.00</td><td><span class="pill ok">Paid</span></td><td class="hide-m"><a href="#" style="color:var(--wood)">PDF</a></td></tr>
+      <tr><td>Sep 2, 2026</td><td>September rent</td><td>$500.00</td><td><span class="pill ok">Paid</span></td><td class="hide-m"><a href="#" style="color:var(--wood)">PDF</a></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel" id="t-req">
+    <div class="pane">
+      <h2>Send a request</h2>
+      <form onsubmit="event.preventDefault();ok('reqMsg');this.reset()">
+        <label>Type of request<select><option>Repair / maintenance</option><option>Key or lock</option><option>Billing question</option><option>Lease question (renew, add a space, move out)</option><option>Something else</option></select></label>
+        <label>How urgent?<select><option>Normal</option><option>Urgent (leak, no power, can't lock)</option></select></label>
+        <label>Describe it<textarea rows="4" required placeholder="What's going on, and where in your space?"></textarea></label>
+        <label>Add a photo (optional)<input type="file" accept="image/*"></label>
+        <div><button class="btn" type="submit">Send Request</button></div>
+      </form>
+      <div class="msg" id="reqMsg">Demo only: Anya and Darin would get this right away, and you'd see updates here.</div>
+    </div>
+    <div class="pane">
+      <h2>My requests</h2>
+      <table><tr><th>Sent</th><th>Request</th><th>Status</th></tr>
+      <tr><td>Nov 3</td><td>Window blind won't close</td><td><span class="pill warn">Scheduled Nov 12</span></td></tr>
+      <tr><td>Aug 19</td><td>Extra key for new staff</td><td><span class="pill ok">Done</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel" id="t-docs">
+    <div class="pane">
+      <h2>My documents</h2>
+      <div class="doc"><span>Signed lease: Office F (2025–2027)</span><a href="#">View</a></div>
+      <div class="doc"><span>Rental application</span><a href="#">View</a></div>
+      <div class="doc"><span>Building rules</span><a href="#">View</a></div>
+      <div class="doc"><span>2026 rent receipts</span><a href="#">Download</a></div>
+    </div>
+  </div>
+
+  <div class="panel" id="t-news">
+    <div class="pane">
+      <h2>Building maintenance schedule</h2>
+      <table><tr><th>Date</th><th>What</th><th class="hide-m">Note</th></tr>
+      <tr><td>Dec 8</td><td>Hallway carpet cleaning</td><td class="hide-m">Hallway closed 8–11 AM</td></tr>
+      <tr><td>Jan 12</td><td>Solar panel washing</td><td class="hide-m">No access needed</td></tr>
+      <tr><td>Feb 9</td><td>Paint touch-ups</td><td class="hide-m">Common areas only</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WAITLIST ================= -->
+<section id="waitlist" class="hide">
+  <div class="hello"><h1>Hi, Mark</h1><p>Thanks for joining the waitlist. Here's where you stand.</p></div>
+  <div class="pane">
+    <div class="place"><div class="num">✓</div>
+      <div><h2 style="margin-bottom:4px">You're on the waitlist for an upstairs office</h2>
+      <p style="color:var(--muted)">All 24 spaces are leased right now. When one that matches your choice opens, we'll email and text you, and you'll be able to apply right here.</p></div>
+    </div>
+  </div>
+  <div class="tabs" data-group="w">
+    <button class="on" data-p="w-status">My status</button><button data-p="w-prefs">My preferences</button><button data-p="w-apply">Application</button><button data-p="w-msg">Book a call</button>
+  </div>
+
+  <div class="panel on" id="w-status">
+    <div class="pane">
+      <h2>Next steps</h2>
+      <ul class="steps">
+        <li><span class="dot done">✓</span><div><b>Joined the waitlist</b><br><span style="color:var(--muted);font-size:14px">Oct 28, 2026</span></div></li>
+        <li><span class="dot now">2</span><div><b>Wait for a matching space</b><br><span style="color:var(--muted);font-size:14px">You can get your application ready now to move faster later.</span></div></li>
+        <li><span class="dot next">3</span><div><b>Apply online</b></div></li>
+        <li><span class="dot next">4</span><div><b>Quick video call with Anya</b></div></li>
+        <li><span class="dot next">5</span><div><b>Sign your lease online and move in</b></div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel" id="w-prefs">
+    <div class="pane">
+      <h2>What you're looking for</h2>
+      <form onsubmit="event.preventDefault();ok('prefMsg')">
+        <label>Space type<select><option selected>Office (upstairs)</option><option>Retail (street level)</option><option>Either</option></select></label>
+        <label>Specific space (optional)<select><option>Any</option><option>Office F</option><option>Office K</option><option>Two connected offices</option></select></label>
+        <label>Ideal move-in<select><option>As soon as possible</option><option>In 1–3 months</option><option>In 3–6 months</option></select></label>
+        <label>Business type<input value="Bookkeeping"></label>
+        <div><button class="btn" type="submit">Save</button></div>
+      </form>
+      <div class="msg" id="prefMsg">Demo only: your preferences would be saved.</div>
+    </div>
+  </div>
+
+  <div class="panel" id="w-apply">
+    <div class="pane">
+      <div class="row"><div><h2 style="margin:0">Rental application</h2><p style="color:var(--muted);font-size:14px">Not started. Fill it in now so you're ready the moment a space opens.</p></div><span class="pill grey">Not started</span></div>
+      <div style="margin-top:16px"><a class="btn" href="#" onclick="ok('appMsg');return false">Start Application</a></div>
+      <div class="msg" id="appMsg">Demo only: this would open the online application, saved to your account.</div>
+    </div>
+  </div>
+
+  <div class="panel" id="w-msg">
+    <div class="pane">
+      <h2>Book a call with Anya</h2>
+      <p style="color:var(--muted);margin-bottom:14px">Have questions, or a space just opened for you? Pick a time for a short Zoom or FaceTime call.</p>
+      <a class="btn" href="#" onclick="ok('qMsg');return false">See available times</a>
+      <div class="msg" id="qMsg">Demo only: this opens the GHL booking calendar.</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+const as=new URLSearchParams(location.search).get("as")==="waitlist"?"waitlist":"tenant";
+document.getElementById(as).classList.remove("hide");
+document.getElementById("who").textContent=as==="tenant"?"Sarah Lee · Office F":"Mark Diaz · Waitlist";
+document.getElementById("av").textContent=as==="tenant"?"SL":"MD";
+document.querySelectorAll(".tabs").forEach(t=>t.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+  t.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));
+  const sec=t.closest("section");
+  sec.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id===b.dataset.p));
+}));
+function ok(id){document.getElementById(id).style.display="block"}
+</script>
+</body>
+</html>
